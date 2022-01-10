@@ -66,6 +66,8 @@ Configuration can be provided via:
 | TESTRAIL_PASSWORD               | password             | Account password.                                                                                                                                                                                                                                                    |                             |  `true`  |
 | PROJECT_NAME            | projectName          | Project name in which test cases are stored.                                                                                                                                                                                                                                                            |                             |  `true`  |
 | PLAN_NAME              | planName            | Plan name in which test cases are stored.                                                                                                                                                                                                                                                              | TestPlan              |  `false`  |
+| RUN_NAME              | runName            | Run name in which test cases are stored.                                                                                                                                                                                                                                                              | Run_ + date (browser + OS)              |  `false`  |
+
 
 ## Author
 
