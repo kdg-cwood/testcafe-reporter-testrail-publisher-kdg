@@ -1,13 +1,13 @@
 {
   "name": "testcafe-reporter-testrail-publisher",
   "version": "1.1.0",
-  "description": "testcafe-reporter-testrail-publisher TestCafe reporter plugin.",
+  "description": "testcafe-reporter-testrail-publisher TestCafe publisher / reporter plugin.",
   "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adilbenmoussa/testcafe-reporter-testrail-publisher.git"
   },
-  "author": "Adil Ben Moussa <adil.benmoussa@gmail.com> (http://tt-tech.io)",
+  "author": "Adil Ben Moussa <adil.benmoussa@gmail.com>",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
