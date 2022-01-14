@@ -25,7 +25,7 @@ exports['default'] = () => {
       this.testrailConfig.user = process.env.TESTRAIL_USER;
       this.testrailConfig.testPlan = process.env.PLAN_NAME || 'TestPlan';
       this.taskRunDate = this.moment(new Date()).format('MMMM Do YYYY, h:mm:ss a');
-
+      this.testrailConfig.testRun = process.env.RUN_NAME || 'Run_' + this.taskRunDate;
       if (!Object.values(this.testrailConfig).every(entry => !!entry)) {
         this.newline().write(
           this.chalk.red.bold(
@@ -205,7 +205,7 @@ exports['default'] = () => {
       const userAgentsDetails = this.userAgents[0].split('/');
 
       const runName =
-        `Run_${this.taskRunDate} (${userAgentsDetails[0]}_${userAgentsDetails[1]})`;
+        `${this.testrailConfig.testRun} (${userAgentsDetails[0]}_${userAgentsDetails[1]})`;
       const runDetails = {
         suite_id: suite.id,
         include_all: false,
