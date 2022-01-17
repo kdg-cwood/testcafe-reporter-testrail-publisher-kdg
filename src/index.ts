@@ -1,6 +1,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 
 const TestrailApi = require('testrail-api');
+
+// ref: https://www.gurock.com/testrail/docs/api/reference/statuses/
+export enum TestCaseStatus {
+  Unknown, // 0
+  Passed, // 1
+  Blocked, // 2
+  Untested, // 3
+  Retest, // 4
+  Failed, // 5
+}
+
 exports['default'] = () => {
   return {
     noColors: false,
@@ -151,7 +162,7 @@ exports['default'] = () => {
 
         this.testRailTestCases.push({
           case_id: String(testCaseId).trim(),
-          status_id: testStatus === 'Passed' ? 1 : testStatus === 'Skipped' ? 1 : 5,
+          status_id: testStatus === 'Passed' ? TestCaseStatus.Passed : testStatus === 'Skipped' ? TestCaseStatus.Untested : TestCaseStatus.Failed,
           comment:
             testStatus === 'Passed'
               ? 'Test Passed'
