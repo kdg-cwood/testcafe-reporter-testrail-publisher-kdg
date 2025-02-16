@@ -63,6 +63,6 @@
     "typescript": "3.9.7"
   },
   "peerDependencies": {
-    "testcafe": "1.x"
+    "testcafe": "3.7.1"
   }
 }
