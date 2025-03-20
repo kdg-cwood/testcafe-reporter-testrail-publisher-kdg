@@ -261,13 +261,14 @@ exports['default'] = () => {
           (_project) => _project.name === testRailConfig.projectName,
         );
       } catch (e) {
+        const error = e as Error;
         this.newline()
           .write(this.chalk.red.bold(this.symbols.err))
           .write(
             this.chalk.red(`Error getting the project ${testRailConfig.projectName}`),
           )
           .newline()
-          .write(this.chalk.red(`Error: ${JSON.stringify(e.message, null, 2)}`));
+          .write(this.chalk.red(`Error: ${JSON.stringify(error.message, null, 2)}`));
         process.exit(1);
       }
 
@@ -289,11 +290,12 @@ exports['default'] = () => {
           plan = result.body;
         }
       } catch (e) {
+        const error = e as Error;
         this.newline()
           .write(this.chalk.red.bold(this.symbols.err))
           .write(this.chalk.red(`Error getting the plans`))
           .newline()
-          .write(this.chalk.red(`Error: ${JSON.stringify(e.message, null, 2)}`));
+          .write(this.chalk.red(`Error: ${JSON.stringify(error.message, null, 2)}`));
         process.exit(1);
       }
 
@@ -313,11 +315,12 @@ exports['default'] = () => {
           suite = body[0];
         }
       } catch (e) {
+        const error = e as Error;
         this.newline()
           .write(this.chalk.red.bold(this.symbols.err))
           .write(this.chalk.red(`Error getting suites`))
           .newline()
-          .write(this.chalk.red(`Error: ${JSON.stringify(e.message, null, 2)}`));
+          .write(this.chalk.red(`Error: ${JSON.stringify(error.message, null, 2)}`));
         process.exit(1);
       }
 
@@ -330,11 +333,12 @@ exports['default'] = () => {
         const { body } = await testrailApi.addPlanEntry(plan.id, runDetails);
         planEntryResult = body;
       } catch (e) {
+        const error = e as Error;
         this.newline()
           .write(this.chalk.red.bold(this.symbols.err))
           .write(this.chalk.red(`Error at AddPlanEntry`))
           .newline()
-          .write(this.chalk.red(`Error: ${JSON.stringify(e.message, null, 2)}`));
+          .write(this.chalk.red(`Error: ${JSON.stringify(error.message, null, 2)}`));
         process.exit(1);
       }
 
@@ -355,11 +359,12 @@ exports['default'] = () => {
             .write(this.chalk.red(`No Data has been published to Testrail.`));
         }
       } catch (e) {
+        const error = e as Error;
         this.newline()
           .write(this.chalk.red.bold(this.symbols.err))
           .write(this.chalk.red(`Error at Adding results`))
           .newline()
-          .write(this.chalk.red(`Error: ${JSON.stringify(e.message, null, 2)}`));
+          .write(this.chalk.red(`Error: ${JSON.stringify(error.message, null, 2)}`));
         process.exit(1);
       }
     },

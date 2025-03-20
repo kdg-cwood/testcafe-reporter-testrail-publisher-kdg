@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-testrail-publisher-kdg",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Fork of testcafe-reporter-testrail-publisher TestCafe publisher / reporter plugin.",
   "private": false,
   "repository": {
