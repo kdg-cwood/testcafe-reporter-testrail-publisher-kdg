@@ -1,4 +1,4 @@
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, '__esModule', { value: true });
 
 const TestrailApi = require('testrail-api');
 
@@ -37,7 +37,7 @@ exports['default'] = () => {
       this.testrailConfig.testPlan = process.env.PLAN_NAME || 'TestPlan';
       this.taskRunDate = this.moment(new Date()).format('MMMM Do YYYY, h:mm:ss a');
       this.testrailConfig.testRun = process.env.RUN_NAME || 'Run_' + this.taskRunDate;
-      if (!Object.values(this.testrailConfig).every(entry => !!entry)) {
+      if (!Object.values(this.testrailConfig).every((entry) => !!entry)) {
         this.newline().write(
           this.chalk.red.bold(
             'Error:  TESTRAIL_HOST, TESTRAIL_USER, TESTRAIL_PASSWORD and PROJECT_NAME must be set as environment variables for the reporter plugin to push the result to the Testrail',
@@ -59,7 +59,7 @@ exports['default'] = () => {
       logWithFormat.bind(this, `Fixture: ${this.fixtureName}`, this.chalk.black)();
     },
 
-    async reportTestDone(name: string, testRunInfo: {errs, skipped}) {
+    async reportTestDone(name: string, testRunInfo: { errs; skipped }) {
       const { errs, skipped } = testRunInfo;
       const testStatus = skipped ? 'Skipped' : errs.length === 0 ? 'Passed' : 'Failed';
       const logger = errs.length === 0 ? this.chalk.green : this.chalk.red;
@@ -162,13 +162,18 @@ exports['default'] = () => {
 
         this.testRailTestCases.push({
           case_id: String(testCaseId).trim(),
-          status_id: testStatus === 'Passed' ? TestCaseStatus.Passed : testStatus === 'Skipped' ? TestCaseStatus.Untested : TestCaseStatus.Failed,
+          status_id:
+            testStatus === 'Passed'
+              ? TestCaseStatus.Passed
+              : testStatus === 'Skipped'
+                ? TestCaseStatus.Untested
+                : TestCaseStatus.Failed,
           comment:
             testStatus === 'Passed'
               ? 'Test Passed'
               : testStatus === 'Skipped'
-              ? 'Test passed'
-              : error,
+                ? 'Test passed'
+                : error,
         });
       }
 
@@ -215,8 +220,7 @@ exports['default'] = () => {
 
       const userAgentsDetails = this.userAgents[0].split('/');
 
-      const runName =
-        `${this.testrailConfig.testRun} (${userAgentsDetails[0]}_${userAgentsDetails[1]})`;
+      const runName = `${this.testrailConfig.testRun} (${userAgentsDetails[0]}_${userAgentsDetails[1]})`;
       const runDetails = {
         suite_id: suite.id,
         include_all: false,
@@ -253,7 +257,9 @@ exports['default'] = () => {
       let project;
       try {
         const { body } = await testrailApi.getProjects();
-        project = body.projects.find((_project) => _project.name === testRailConfig.projectName);
+        project = body.projects.find(
+          (_project) => _project.name === testRailConfig.projectName,
+        );
       } catch (e) {
         this.newline()
           .write(this.chalk.red.bold(this.symbols.err))
