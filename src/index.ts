@@ -48,7 +48,7 @@ exports['default'] = () => {
 
       logWithFormat.bind(
         this,
-        `Running tests in: ${this.userAgents}`,
+        `Running ${this.count} tests in: ${this.userAgents}`,
         this.chalk.greenBright,
       )();
     },
