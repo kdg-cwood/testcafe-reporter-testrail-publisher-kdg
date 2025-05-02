@@ -107,6 +107,7 @@ exports['default'] = () => {
     },
 
     async _publishToTestrail() {
+      console.log('publishing to testrail');
       for (let index = 0; index < this.testResult.length; index++) {
         const { name, testStatus, fixtureName, error } = this.testResult[index];
 
@@ -182,19 +183,25 @@ exports['default'] = () => {
           .write(this.chalk.red.bold(this.symbols.err))
           .write('No test case data found to publish');
         return;
-      }
+      } else {
+	    console.log('got ' + this.testRailCases.length + ' cases to publish');
+	  }
 
       const testrailApi = new TestrailApi({
         host: this.testrailConfig.host,
         user: this.testrailConfig.user,
         password: this.testrailConfig.password,
       });
+	  
+	  console.log('testrail api = ', testrailApi);
 
       // get the project
       const project = await this._getProjectOrThrowAndExit(
         testrailApi,
         this.testrailConfig,
       );
+
+
       this.newline()
         .write(this.chalk.blue.bold('Project name(id) '))
         .write(this.chalk.yellow(project.name + '(' + project.id + ')'));
@@ -254,25 +261,10 @@ exports['default'] = () => {
     },
 
     async _getProjectOrThrowAndExit(testrailApi, testRailConfig) {
-      let project;
-      try {
-        const { body } = await testrailApi.getProjects();
-        project = body.projects.find(
-          (_project) => _project.name === testRailConfig.projectName,
-        );
-      } catch (e) {
-        const error = e as Error;
-        this.newline()
-          .write(this.chalk.red.bold(this.symbols.err))
-          .write(
-            this.chalk.red(`Error getting the project ${testRailConfig.projectName}`),
-          )
-          .newline()
-          .write(this.chalk.red(`Error: ${JSON.stringify(error.message, null, 2)}`));
-        process.exit(1);
-      }
-
-      return project;
+      const { body } = await testrailApi.getProjects();
+      return body.projects.find(
+        (p) => p.name === testRailConfig.projectName,
+      );
     },
 
     async _getPlanOrThrowAndExit(testrailApi, testRailConfig, project) {
