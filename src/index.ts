@@ -184,7 +184,7 @@ exports['default'] = () => {
           .write('No test case data found to publish');
         return;
       } else {
-	    console.log('got ' + this.testRailCases.length + ' cases to publish');
+	    console.log('got ' + this.testRailTestCases.length + ' cases to publish');
 	  }
 
       const testrailApi = new TestrailApi({
