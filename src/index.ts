@@ -107,7 +107,6 @@ exports['default'] = () => {
     },
 
     async _publishToTestrail() {
-      console.log('publishing to testrail');
       for (let index = 0; index < this.testResult.length; index++) {
         const { name, testStatus, fixtureName, error } = this.testResult[index];
 
@@ -183,17 +182,13 @@ exports['default'] = () => {
           .write(this.chalk.red.bold(this.symbols.err))
           .write('No test case data found to publish');
         return;
-      } else {
-	    console.log('got ' + this.testRailTestCases.length + ' cases to publish');
-	  }
+      }
 
       const testrailApi = new TestrailApi({
         host: this.testrailConfig.host,
         user: this.testrailConfig.user,
         password: this.testrailConfig.password,
       });
-	  
-	  console.log('testrail api = ', testrailApi);
 
       // get the project
       const project = await this._getProjectOrThrowAndExit(
